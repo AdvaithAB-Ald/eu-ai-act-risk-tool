@@ -1,6 +1,6 @@
 # EU AI Act Risk Self-Assessment Tool
 
-**[Live demo →](https://eu-ai-act-risk-tool.streamlit.app)** &nbsp;|&nbsp; Built for [Tolt Innovations](https://www.tolt.ie)
+**[Live demo →](https://eu-ai-act-risk-toolgit-b3i9qs68kpkagubkeoveag.streamlit.app/)** &nbsp;|&nbsp; Built for [Tolt Innovations](https://www.tolt.ie)
 
 ---
 
