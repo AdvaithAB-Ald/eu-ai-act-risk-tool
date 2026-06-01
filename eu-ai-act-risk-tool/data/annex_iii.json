@@ -1,0 +1,90 @@
+{
+  "areas": [
+    {
+      "id": "biometrics",
+      "name": "Biometrics",
+      "annex_reference": "Annex III(1)",
+      "use_cases": [
+        "Remote biometric identification of natural persons (including post-remote)",
+        "Biometric categorisation inferring sensitive attributes (race, political opinions, trade union membership, religious/philosophical beliefs, sex life/sexual orientation)",
+        "Emotion recognition systems"
+      ]
+    },
+    {
+      "id": "critical_infrastructure",
+      "name": "Critical infrastructure",
+      "annex_reference": "Annex III(2)",
+      "use_cases": [
+        "AI safety components in management and operation of critical digital infrastructure",
+        "AI safety components in road traffic management",
+        "AI safety components in supply of water, gas, heating, electricity"
+      ]
+    },
+    {
+      "id": "education",
+      "name": "Education and vocational training",
+      "annex_reference": "Annex III(3)",
+      "use_cases": [
+        "Determining access or admission to educational and vocational training institutions",
+        "Evaluating learning outcomes that affect the educational future of a person",
+        "Assessing appropriate level of education for an individual (profiling)",
+        "Monitoring and detecting prohibited behaviour of students during tests"
+      ]
+    },
+    {
+      "id": "employment",
+      "name": "Employment, workers management, and access to self-employment",
+      "annex_reference": "Annex III(4)",
+      "use_cases": [
+        "Recruitment or selection of natural persons (targeted job ads, screening, filtering, evaluation during interviews)",
+        "Decisions affecting terms of work-related relationships, promotion, or termination",
+        "Task allocation, monitoring or evaluation of performance and behaviour of persons in work-related relationships"
+      ]
+    },
+    {
+      "id": "essential_services",
+      "name": "Essential private and public services",
+      "annex_reference": "Annex III(5)",
+      "use_cases": [
+        "AI systems used by public authorities or on their behalf to evaluate eligibility for essential public services or benefits",
+        "AI systems used to evaluate creditworthiness or establish credit score of natural persons (except fraud detection)",
+        "AI systems used for risk assessment and pricing in life and health insurance",
+        "AI systems to dispatch or prioritise emergency services (police, fire, medical aid)",
+        "AI systems making decisions on eligibility for health and life insurance"
+      ]
+    },
+    {
+      "id": "law_enforcement",
+      "name": "Law enforcement",
+      "annex_reference": "Annex III(6)",
+      "use_cases": [
+        "Individual risk assessment of natural persons to assess risk of offending or reoffending or risk of becoming a victim",
+        "Use as polygraphs or similar tools to detect emotional state",
+        "Evaluation of reliability and accuracy of evidence in criminal proceedings",
+        "Profiling of natural persons in the course of detection, investigation, or prosecution of criminal offences",
+        "Crime analytics to profile natural persons or assess personality traits likely to offend"
+      ]
+    },
+    {
+      "id": "migration",
+      "name": "Migration, asylum, and border control management",
+      "annex_reference": "Annex III(7)",
+      "use_cases": [
+        "Polygraphs or similar tools used on natural persons in migration, asylum, and border control",
+        "Risk assessment of natural persons for immigration purposes (irregular migration risk, security risk, health risk)",
+        "Examination of visa and asylum applications and associated complaints",
+        "Detection, recognition, or identification of natural persons in the context of migration, asylum, and border control"
+      ]
+    },
+    {
+      "id": "justice",
+      "name": "Administration of justice and democratic processes",
+      "annex_reference": "Annex III(8)",
+      "use_cases": [
+        "AI assistance to judicial authorities in researching and interpreting facts and the law, and applying it to a specific set of facts",
+        "AI used to influence elections and referenda or voting behaviour of natural persons",
+        "AI used to influence targeted natural persons in political campaigns"
+      ]
+    }
+  ]
+}
