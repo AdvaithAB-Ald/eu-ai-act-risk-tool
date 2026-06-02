@@ -58,8 +58,22 @@ st.markdown(
     /* ── Dividers ── */
     hr { border-color: #e4dfd4 !important; }
 
-    /* ── Primary button → Tolt indigo ── */
-    .stButton > button[kind="primary"] {
+    /* ── Indigo top accent bar (matches Tolt CTA feel) ── */
+    .stApp::before {
+        content: '';
+        display: block;
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5, #6366f1);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 9999;
+    }
+
+    /* ── ALL buttons → Tolt indigo ── */
+    .stButton button,
+    button[kind="primary"],
+    button[data-testid="baseButton-primary"],
+    div[data-testid="stButton"] button {
         background-color: #4f46e5 !important;
         color: #ffffff !important;
         border: none !important;
@@ -67,31 +81,53 @@ st.markdown(
         font-weight: 600 !important;
         padding: 0.6rem 1.4rem !important;
     }
-    .stButton > button[kind="primary"]:hover {
+    .stButton button:hover,
+    button[kind="primary"]:hover {
         background-color: #6366f1 !important;
+        color: #ffffff !important;
     }
 
-    /* ── Download button ── */
-    .stDownloadButton > button {
+    /* ── Download button → dark navy ── */
+    .stDownloadButton button,
+    div[data-testid="stDownloadButton"] button {
         background-color: #0b1b2b !important;
         color: #ffffff !important;
         border-radius: 8px !important;
         font-weight: 600 !important;
         border: none !important;
     }
-    .stDownloadButton > button:hover {
-        background-color: #1a2a3d !important;
-    }
+    .stDownloadButton button:hover { background-color: #1a2a3d !important; }
+
+    /* ── Links → indigo ── */
+    a, a:visited { color: #4f46e5 !important; }
+    a:hover { color: #6366f1 !important; }
+
+    /* ── Headings: numbers in indigo ── */
+    h1 { color: #0b1b2b !important; border-bottom: 3px solid #4f46e5; padding-bottom: 8px; display: inline-block; }
+    h2 { color: #0b1b2b !important; }
+    h3 { color: #4f46e5 !important; }
+
+    /* ── Checkboxes & radio → indigo ── */
+    .stCheckbox input:checked + div,
+    [data-testid="stCheckbox"] input:checked { accent-color: #4f46e5 !important; }
+    input[type="checkbox"] { accent-color: #4f46e5 !important; }
 
     /* ── Expanders ── */
-    .streamlit-expanderHeader {
+    .streamlit-expanderHeader,
+    [data-testid="stExpander"] summary {
         background-color: #ffffff !important;
         border: 1px solid #e4dfd4 !important;
         border-radius: 8px !important;
         color: #0b1b2b !important;
         font-weight: 600 !important;
     }
-    .streamlit-expanderContent {
+    [data-testid="stExpander"] details[open] summary {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-color: #4f46e5 !important;
+    }
+    .streamlit-expanderContent,
+    [data-testid="stExpander"] div[role="region"] {
         background-color: #ffffff !important;
         border: 1px solid #e4dfd4 !important;
         border-top: none !important;
@@ -99,6 +135,7 @@ st.markdown(
 
     /* ── Info / warning / error boxes ── */
     .stAlert { border-radius: 8px !important; }
+    div[data-testid="stInfo"] { border-left-color: #4f46e5 !important; }
 
     /* ── Tier result banners ── */
     .tier-prohibited {
@@ -152,14 +189,38 @@ st.markdown(
 # ----------------------------------------------------------------
 # Header
 # ----------------------------------------------------------------
-col_logo, col_title = st.columns([1, 6])
-with col_title:
-    st.title("EU AI Act Risk Self-Assessment Tool")
-    st.caption(
-        "Reflects the European Commission draft Article 6 classification guidelines "
-        "published **19 May 2026** · Consultation closes 23 June 2026 · "
-        "Produced as a demonstration for [Tolt Innovations](https://www.tolt.ie)"
-    )
+st.markdown(
+    """
+    <div style="text-align:center; padding: 48px 0 8px 0;">
+        <span style="
+            background:#eeeafe;
+            color:#4f46e5;
+            font-size:0.75rem;
+            font-weight:700;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            padding:6px 14px;
+            border-radius:999px;
+            border:1px solid #c7d2fe;
+        ">EU AI Act · Risk Classification</span>
+        <h1 style="
+            font-size:2.6rem;
+            font-weight:800;
+            color:#0b1b2b;
+            margin:16px 0 8px 0;
+            border:none;
+        ">Risk Self-Assessment Tool</h1>
+        <p style="color:#6b7a8c; font-size:0.9rem; margin:0;">
+            Reflects European Commission draft Article 6 guidelines published
+            <strong style="color:#0b1b2b;">19 May 2026</strong> &nbsp;·&nbsp;
+            Consultation closes 23 June 2026 &nbsp;·&nbsp;
+            Built for <a href="https://www.tolt.ie" target="_blank"
+                style="color:#4f46e5;font-weight:600;">Tolt Innovations</a>
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.divider()
 
