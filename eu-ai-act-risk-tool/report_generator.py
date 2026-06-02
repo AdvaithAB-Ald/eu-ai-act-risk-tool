@@ -26,24 +26,27 @@ from reportlab.platypus import (
 from risk_classifier import AssessmentResult, RiskTier
 
 # ----------------------------------------------------------------
-# Tolt brand colours (approximate from tolt.ie)
+# Tolt brand colours — sourced from tolt.ie CSS variables
+# --bg:#f6f4ef  --ink:#0b1b2b  --accent:#4f46e5  --line:#e4dfd4
 # ----------------------------------------------------------------
-TOLT_DARK = colors.HexColor("#0D0D0D")
-TOLT_ACCENT = colors.HexColor("#1A73E8")   # blue accent
-TOLT_SUBTLE = colors.HexColor("#F5F5F5")
+TOLT_DARK   = colors.HexColor("#0b1b2b")   # --ink
+TOLT_ACCENT = colors.HexColor("#4f46e5")   # --accent (indigo)
+TOLT_BG     = colors.HexColor("#f6f4ef")   # --bg (warm cream)
+TOLT_LINE   = colors.HexColor("#e4dfd4")   # --line (border)
+TOLT_MUTED  = colors.HexColor("#6b7a8c")   # --muted
 
 TIER_COLOURS = {
-    RiskTier.PROHIBITED: colors.HexColor("#C62828"),
-    RiskTier.HIGH_RISK: colors.HexColor("#E65100"),
-    RiskTier.LIMITED: colors.HexColor("#1565C0"),
-    RiskTier.MINIMAL: colors.HexColor("#2E7D32"),
+    RiskTier.PROHIBITED: colors.HexColor("#be123c"),   # rose-700
+    RiskTier.HIGH_RISK:  colors.HexColor("#c2410c"),   # orange-700
+    RiskTier.LIMITED:    colors.HexColor("#4f46e5"),   # Tolt indigo
+    RiskTier.MINIMAL:    colors.HexColor("#15803d"),   # green-700
 }
 
 TIER_BG = {
-    RiskTier.PROHIBITED: colors.HexColor("#FFEBEE"),
-    RiskTier.HIGH_RISK: colors.HexColor("#FFF3E0"),
-    RiskTier.LIMITED: colors.HexColor("#E3F2FD"),
-    RiskTier.MINIMAL: colors.HexColor("#E8F5E9"),
+    RiskTier.PROHIBITED: colors.HexColor("#fff0f0"),
+    RiskTier.HIGH_RISK:  colors.HexColor("#fff7ed"),
+    RiskTier.LIMITED:    colors.HexColor("#eeeafe"),   # --accent-soft
+    RiskTier.MINIMAL:    colors.HexColor("#f0fdf4"),
 }
 
 
@@ -156,7 +159,7 @@ def generate_pdf(
         f"Prepared by Tolt Innovations Demonstration Tool · {date.today().strftime('%d %B %Y')}",
         styles["subtitle"],
     ))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=TOLT_ACCENT, spaceAfter=12))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=TOLT_ACCENT, spaceAfter=12))  # indigo rule
 
     # Organisation + purpose
     if organisation_name:
@@ -240,7 +243,7 @@ def generate_pdf(
     # ----------------------------------------------------------------
     # Sources & footer
     # ----------------------------------------------------------------
-    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#CCCCCC"), spaceBefore=16, spaceAfter=8))
+    story.append(HRFlowable(width="100%", thickness=0.5, color=TOLT_LINE, spaceBefore=16, spaceAfter=8))
     story.append(Paragraph(
         "<b>Key sources:</b> EU AI Act (Regulation (EU) 2024/1689) · "
         "European Commission draft Article 6 classification guidelines (19 May 2026) · "

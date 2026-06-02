@@ -34,21 +34,108 @@ with open(DATA_PATH) as f:
 ANNEX_III_BY_ID: dict[str, dict] = {a["id"]: a for a in ANNEX_III}
 
 # ----------------------------------------------------------------
-# Styling
+# Styling — Tolt brand palette (extracted from tolt.ie CSS variables)
+# --bg:#f6f4ef  --ink:#0b1b2b  --accent:#4f46e5  --line:#e4dfd4
 # ----------------------------------------------------------------
 st.markdown(
     """
     <style>
-    .tier-prohibited { background:#FFEBEE; border-left:6px solid #C62828;
-        padding:16px; border-radius:4px; margin:12px 0; }
-    .tier-high { background:#FFF3E0; border-left:6px solid #E65100;
-        padding:16px; border-radius:4px; margin:12px 0; }
-    .tier-limited { background:#E3F2FD; border-left:6px solid #1565C0;
-        padding:16px; border-radius:4px; margin:12px 0; }
-    .tier-minimal { background:#E8F5E9; border-left:6px solid #2E7D32;
-        padding:16px; border-radius:4px; margin:12px 0; }
-    .section-rule { border-top:1px solid #E0E0E0; margin:24px 0 16px 0; }
-    .caption-note { color:#666; font-size:0.85em; }
+    /* ── Global background & text ── */
+    .stApp { background-color: #f6f4ef; }
+    html, body, [class*="css"] { color: #0b1b2b; }
+
+    /* ── Headings ── */
+    h1, h2, h3, h4 { color: #0b1b2b; font-weight: 700; }
+
+    /* ── Dividers ── */
+    hr { border-color: #e4dfd4 !important; }
+
+    /* ── Primary button → Tolt indigo ── */
+    .stButton > button[kind="primary"] {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        padding: 0.6rem 1.4rem !important;
+    }
+    .stButton > button[kind="primary"]:hover {
+        background-color: #6366f1 !important;
+    }
+
+    /* ── Download button ── */
+    .stDownloadButton > button {
+        background-color: #0b1b2b !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        border: none !important;
+    }
+    .stDownloadButton > button:hover {
+        background-color: #1a2a3d !important;
+    }
+
+    /* ── Expanders ── */
+    .streamlit-expanderHeader {
+        background-color: #ffffff !important;
+        border: 1px solid #e4dfd4 !important;
+        border-radius: 8px !important;
+        color: #0b1b2b !important;
+        font-weight: 600 !important;
+    }
+    .streamlit-expanderContent {
+        background-color: #ffffff !important;
+        border: 1px solid #e4dfd4 !important;
+        border-top: none !important;
+    }
+
+    /* ── Info / warning / error boxes ── */
+    .stAlert { border-radius: 8px !important; }
+
+    /* ── Tier result banners ── */
+    .tier-prohibited {
+        background: #fff0f0;
+        border-left: 5px solid #be123c;
+        padding: 18px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+    }
+    .tier-high {
+        background: #fff7ed;
+        border-left: 5px solid #c2410c;
+        padding: 18px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+    }
+    .tier-limited {
+        background: #eeeafe;
+        border-left: 5px solid #4f46e5;
+        padding: 18px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+    }
+    .tier-minimal {
+        background: #f0fdf4;
+        border-left: 5px solid #15803d;
+        padding: 18px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+    }
+
+    /* ── Caption / muted text ── */
+    .caption-note, small, .stCaption { color: #6b7a8c !important; }
+
+    /* ── Text inputs & text areas ── */
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        background-color: #ffffff !important;
+        border: 1px solid #e4dfd4 !important;
+        border-radius: 8px !important;
+        color: #0b1b2b !important;
+    }
+
+    /* ── Checkboxes ── */
+    .stCheckbox label { color: #1a2a3d !important; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -340,12 +427,12 @@ if "result" in st.session_state:
     st.divider()
     st.header("Assessment result")
 
-    # Tier colour mapping
+    # Tier colour mapping — Tolt palette
     tier_css = {
-        RiskTier.PROHIBITED: ("tier-prohibited", "🚫", "#C62828"),
-        RiskTier.HIGH_RISK: ("tier-high", "🔴", "#E65100"),
-        RiskTier.LIMITED: ("tier-limited", "🔵", "#1565C0"),
-        RiskTier.MINIMAL: ("tier-minimal", "🟢", "#2E7D32"),
+        RiskTier.PROHIBITED: ("tier-prohibited", "🚫", "#be123c"),
+        RiskTier.HIGH_RISK:  ("tier-high",       "🔴", "#c2410c"),
+        RiskTier.LIMITED:    ("tier-limited",     "◆",  "#4f46e5"),
+        RiskTier.MINIMAL:    ("tier-minimal",     "✓",  "#15803d"),
     }
     css_class, icon, colour = tier_css[result.tier]
 
@@ -419,7 +506,7 @@ if "result" in st.session_state:
 st.divider()
 st.markdown(
     """
-    <div style='text-align:center;color:#888;font-size:0.8em;'>
+    <div style='text-align:center;color:#6b7a8c;font-size:0.8em;border-top:1px solid #e4dfd4;padding-top:16px;'>
     Sources: <a href='https://artificialintelligenceact.eu/article/5/' target='_blank'>EU AI Act Article 5</a> ·
     <a href='https://artificialintelligenceact.eu/article/6/' target='_blank'>Article 6</a> ·
     <a href='https://artificialintelligenceact.eu/annex/3/' target='_blank'>Annex III</a> ·
