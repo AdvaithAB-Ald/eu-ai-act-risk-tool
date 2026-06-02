@@ -41,8 +41,16 @@ st.markdown(
     """
     <style>
     /* ── Global background & text ── */
-    .stApp { background-color: #f6f4ef; }
-    html, body, [class*="css"] { color: #0b1b2b; }
+    .stApp, .main, section[data-testid="stSidebar"],
+    div[data-testid="stAppViewContainer"], div[data-testid="stHeader"] {
+        background-color: #f6f4ef !important;
+    }
+    html, body, [class*="css"],
+    p, li, span, label, div,
+    .stMarkdown, .stText, .stCaption,
+    .element-container, .stAlert p {
+        color: #0b1b2b !important;
+    }
 
     /* ── Headings ── */
     h1, h2, h3, h4 { color: #0b1b2b; font-weight: 700; }
