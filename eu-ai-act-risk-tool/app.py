@@ -87,16 +87,21 @@ st.markdown(
         color: #ffffff !important;
     }
 
-    /* ── Download button → dark navy ── */
+    /* ── Download button → indigo outline style ── */
     .stDownloadButton button,
     div[data-testid="stDownloadButton"] button {
-        background-color: #0b1b2b !important;
-        color: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #4f46e5 !important;
+        border: 2px solid #4f46e5 !important;
         border-radius: 8px !important;
         font-weight: 600 !important;
-        border: none !important;
+        padding: 0.6rem 1.4rem !important;
     }
-    .stDownloadButton button:hover { background-color: #1a2a3d !important; }
+    .stDownloadButton button:hover,
+    div[data-testid="stDownloadButton"] button:hover {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+    }
 
     /* ── Links → indigo ── */
     a, a:visited { color: #4f46e5 !important; }
